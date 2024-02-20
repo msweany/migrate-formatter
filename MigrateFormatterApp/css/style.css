@@ -1,0 +1,17 @@
+.main-sections{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}
+.main-margin{
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+#verify-file,
+#verify-confirm, 
+#verify-explain,
+#verify-table {
+    display: none;
+}

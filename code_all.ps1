@@ -1,0 +1,4 @@
+code C:\code\MigrateFormatter\MigrateFormatterApp
+code C:\code\MigrateFormatter\MigrateFormatterFunctionsAws
+code C:\code\MigrateFormatter\MigrateFormatterFunctionsGcp
+code C:\code\MigrateFormatter\MigrateFormatterFunctionsGeneral

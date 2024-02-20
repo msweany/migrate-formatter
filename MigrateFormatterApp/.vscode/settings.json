@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/39adbd8a-64c9-4f3e-af7d-7a48158b3b31/resourceGroups/migrate-formatter-rg/providers/Microsoft.Web/sites/migrate-formatter",
+    "appService.deploySubpath": "."
+}

@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "Request",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "Response"
+    },
+    {
+      "name": "Documents",
+      "direction": "in",
+      "type": "cosmosDB",
+      "connectionStringSetting": "CosmosDBConnectionString",
+      "databaseName": "migrateFormatter",
+      "collectionName": "gcp",
+      "sqlQuery": "SELECT * FROM c WHERE c.id = {id}"
+    }
+  ]
+}
