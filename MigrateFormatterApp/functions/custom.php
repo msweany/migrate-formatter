@@ -29,18 +29,18 @@ if($inputData['required']['storage'] == 'storage_column'){
     $storagePerMachineIndex = $inputData['required']['storage'];
 }
 
+$groupName[] = 1;
 // counting integer
 $i=1;
 $output = array();
 foreach($csvData as $row) {
-
     // determine if this is one computer per row or multiple
     if($inputData['trackClicks']['singleLine']){
         // it's single, use 1 computer
         $computerCount = 1;
     }else{
         // it's multiple, get the count column
-        $computerCount = $inputData['required']['computer_count'];
+        $computerCount = $row[$inputData['required']['computer_count']];
         if($computerCount == ' ' || $computerCount == '' || $computerCount == 0 || $computerCount == null){
             // skip the row if the computer count is 0
             continue;
@@ -51,7 +51,19 @@ foreach($csvData as $row) {
     for($x = 0; $x < $computerCount; $x++){
         // set up a variable to add to the object
         $thisRow = array();
-        $thisRow["*Server name"]="VM".$i;
+        // if there is a business unit column, replace the computer name with the business unit
+        if($inputData['trackClicks']['group']){
+            # remove any spaces from the business unit
+            $group = str_replace(' ', '_', $row[$inputData['required']['group']]);
+        }else{
+            $group = 'VM';
+        }
+        // if $groupName[$group] is not set, set it to 1
+        if(!isset($groupName[$group])){
+            $groupName[$group] = 1;
+        }
+        $thisRow["*Server name"]=$group."_".$groupName[$group];
+        $groupName[$group]++;
         
         // get the cpu and memory values
         $cpu = $row[$inputData['required']['cpu']];
@@ -83,7 +95,6 @@ foreach($csvData as $row) {
                 }
             }
         }
-        $i++;
         $output[] = $thisRow;
     }
 }
@@ -91,13 +102,12 @@ foreach($csvData as $row) {
 // write the CSV file and return the CSV file name
 $filename = writeCSV($output);
 
+header("Content-Type: application/json; charset=UTF-8");
 // return the file name
-$output = array(
+$return = array(
     'status' => 100,
     'message' => 'File created',
     'filename' => $filename
 );
-header("Content-Type: application/json; charset=UTF-8");
-echo json_encode($output);
-
+print json_encode($return);
 ?>

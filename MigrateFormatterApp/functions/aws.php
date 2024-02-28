@@ -100,14 +100,14 @@ if ($response) {
     // write the CSV file and return the CSV file name
     $filename = writeCSV($output);
     
+    header("Content-Type: application/json; charset=UTF-8");
     // return the file name
-    $output = array(
+    $return = array(
         'status' => 100,
         'message' => 'File created',
         'filename' => $filename
     );
-    header("Content-Type: application/json; charset=UTF-8");
-    echo json_encode($output);
+    print json_encode($return);
 }else{
     print "no response";
 }

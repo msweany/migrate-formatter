@@ -18,11 +18,6 @@ function formatCustom(fileInfo){
         <button id="verify-group-no" class="btn btn-outline-primary">No</button>
         <br /><br />
     `);
-    $("#verify-explain").append(`
-        Is the memory per machine in GB or MB? <br> 
-        <button id="verify-memory-yes" class="btn btn-outline-primary">GB</button> 
-        <button id="verify-memory-no" class="btn btn-outline-primary">MB</button>
-    `);
     //$("#verify-table").show();
 }
 
@@ -53,7 +48,7 @@ function verifyClicks(btn){
     }
 
     // #### now check if both have been clicked
-    if(trackClicks.singleLineClicked && trackClicks.groupClicked && trackClicks.memoryClicked){
+    if(trackClicks.singleLineClicked && trackClicks.groupClicked){
         console.log(trackClicks);
         // change the class of the active button to btn-primary (so we can see what was selected)
         $('.active').removeClass('btn-outline-primary').addClass('btn-primary');
@@ -77,7 +72,9 @@ function verifyClicks(btn){
         // set up the required table info
         requiredHtml += columnMatch(true, 'CPU', 'The column with the CPU count', customfileInfo);
         requiredHtml += columnMatch(true, 'Memory', 'The column with memory', customfileInfo);
+        requiredHtml += confirmOptions(true, 'Memory Type', 'Is the memory in GB or MB?', ['GB', 'MB'], 'MB');
         requiredHtml += columnMatch(true, 'Storage', 'The column with individual machine storage listed', customfileInfo, true);
+        requiredHtml += confirmOptions(true, 'Storage Type', 'Is the storage in GB or MB?', ['GB', 'MB'], 'GB');
         
         // set up the optional table info
         optionalHtml += columnMatch(false, 'OS', 'Add this so we can match up if it\'s Windows or Linux. We\'ll assume Windows if this is not set.', customfileInfo);

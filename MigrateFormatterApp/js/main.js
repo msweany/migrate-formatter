@@ -174,6 +174,9 @@ $(document).on('keyup', '#total_storage', function(){
 $(document).on('click', '#verify-btn-continue', function(){
     // disable the button
     $("#verify-btn-continue").prop('disabled', true);
+    // disable all the selects and inputs
+    $(".item-required").prop('disabled', true);
+    $(".item-optional").prop('disabled', true);
     // show loading
     $("#progress").html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Processing...');
     // set up the data object
@@ -206,9 +209,7 @@ $(document).on('click', '#verify-btn-continue', function(){
         // add the track clicks to the data object
         data.trackClicks = trackClicks;
         console.log(data);
-        // end the script here
-        return;
-        //var functionFile = 'functions/custom.php';
+        var functionFile = 'functions/custom.php';
     }
 
     // send the data to the appropriate function and return the Migrate ready file
