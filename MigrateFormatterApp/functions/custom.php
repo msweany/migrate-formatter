@@ -29,6 +29,27 @@ if($inputData['required']['storage'] == 'storage_column'){
     $storagePerMachineIndex = $inputData['required']['storage'];
 }
 
+// was the OS column selected?
+if($inputData['optional']['os'] != "Select"){
+    $osColumn = "selected";
+}else{
+    $osColumn = "not selected";
+}
+
+// was there a multiple column selected
+if(!$inputData['trackClicks']['singleLine']){
+    $multiColumn = "multi-column";
+}else{
+    $multiColumn = "single-column";
+}
+
+// were business units selected?
+if($inputData['trackClicks']['group']){
+    $groupsColumn = "selected";
+}else{
+    $groupsColumn = "not selected";
+}
+
 $groupName[] = 1;
 // counting integer
 $i=1;
@@ -84,8 +105,6 @@ foreach($csvData as $row) {
             $storagePerMachine = $row[$storagePerMachineIndex];
         }
         $thisRow["Disk 1 size (In GB)"]=$storagePerMachine;
-        # copy over the original instance type and any optional columns selected
-        $thisRow["original_instance_type"]=$row[$inputData['required']['instance_type']];
         
         // check if there are any optional columns we need to add
         if($inputData['optional']){
@@ -101,6 +120,19 @@ foreach($csvData as $row) {
 
 // write the CSV file and return the CSV file name
 $filename = writeCSV($output);
+
+// log the activity
+if($env == 'prod'){
+    $message = "custom file created.";
+    $rows = count($output);
+    if($useStorageColumn){
+        $storage = "CSV column selected";
+    }else{
+        $storage = "entered manually";
+    }
+
+    logThis("custom",$message,$rows,$storage,$osColumn,$multiColumn,$groupsColumn);
+}
 
 header("Content-Type: application/json; charset=UTF-8");
 // return the file name

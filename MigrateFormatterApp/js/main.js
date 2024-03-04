@@ -4,6 +4,9 @@ var tableExplain = 'Match up the appropriate headers with the required headers.'
 
 // handle the file upload
 $("#fileToUpload").on("change", function() {
+    // hide the quickstart
+    $("#quickstart").hide();
+
     // disable the upload button
     $("#uploadBtn").prop('disabled', true);
 
@@ -32,7 +35,6 @@ $("#fileToUpload").on("change", function() {
             processData: false, // Set to false to prevent jQuery from processing the data
             success: function(response) {
                 // Handle the server response here
-                //console.log(response);
                 fileInfo = response;
                 // hide the loading 
                 $("#progress").html('');
@@ -103,6 +105,7 @@ $(document).on('click', '#verify-btn-yes', function(){
         // set up the required table info
         requiredHtml += columnMatch(true, 'Instance Type', 'The column with the AWS instance type', fileInfo);
         requiredHtml += columnMatch(true, 'Storage', 'The column with individual machine storage listed', fileInfo, true);
+        requiredHtml += confirmOptions(true, 'Storage Type', 'Is the storage in the column GB or MB?', ['GB', 'MB']);
         
         // set up the optional table info
         optionalHtml += columnMatch(false, 'OS', 'Add this so we can match up if it\'s Windows or Linux. We\'ll assume Windows with AHUB if this is not set.', fileInfo);
@@ -117,6 +120,7 @@ $(document).on('click', '#verify-btn-yes', function(){
         // set up the required table info
         requiredHtml += columnMatch(true, 'Machine Type', 'The column with the GCP machine type', fileInfo);
         requiredHtml += columnMatch(true, 'Storage', 'The column with individual machine storage listed', fileInfo, true);
+        requiredHtml += confirmOptions(true, 'Storage Type', 'Is the storage in the column GB or MB?', ['GB', 'MB']);
         
         // set up the optional table info
         optionalHtml += columnMatch(false, 'OS', 'Add this so we can match up if it\'s Windows or Linux. We\'ll assume Windows with AHUB if this is not set.', fileInfo);
@@ -151,11 +155,33 @@ $(document).on('change', '.verify-select', function(){
     // change the modified attribute to true
     $(this).attr('modified', 'true');
 
-    // if the value is storage, show the storage input
-    if($(this).val() == 'storage_column'){
-        // append the storage column to the table
-        $("#verify-body-required").append('<tr><td>Total Storage (GB) <i class="fa fa-info-circle show-tooltip" aria-hidden="true" data-bs-toggle="tooltip" title="Enter the total storage for all VM\'s in GB.  We\'ll spread that across all servers to get an idea of price."></i></td><td><input type="text" id="total_storage" modified="false" class="item-required" /></td></tr>');
+    if($(this).attr('id') == 'storage'){
+         // if the value is storage, show the storage input
+        if($(this).val() == 'storage_column'){
+            // check to see if the storage_type radio buttons are already there
+            if(!$('#storage_total_input').length){
+                // clear the modified attribute
+                storageType = false;
+                // remove the storage_type radio buttons
+                $('#storage_type').remove();
+                // append the storage column to the table
+                $("#verify-body-required").append('<tr id="storage_total_input"><td>Total Storage (GB) <i class="fa fa-info-circle show-tooltip" aria-hidden="true" data-bs-toggle="tooltip" title="Enter the total storage for all VM\'s in GB.  We\'ll spread that across all servers to get an idea of price."></i></td><td><input type="text" id="total_storage" modified="false" class="item-required" /></td></tr>');
+            } 
+        }else{
+            if($('#storage_total_input').length){
+                // clear the value for the storage input
+                $("#storage_total_input").attr('modified', 'false');
+                // remove the storage_total_input
+                $("#storage_total_input").remove();
+                // readd the storage_type radio buttons right after the storage select
+                var newRow = confirmOptions(true, 'Storage Type', 'Is the storage in the column GB or MB?', ['GB', 'MB']);;
+                $(newRow).insertAfter('#storage_row');
+            }else{
+
+            }
+        }
     }
+   
     // show dynamic tooltips
     showTooltip();
     // verify the form
@@ -170,6 +196,26 @@ $(document).on('keyup', '#total_storage', function(){
     verifyForm();
 });
 
+// set a global variable to track the clicks for memory_type
+var memoryType = false;
+// if one of the memory radio buttons change, capture that
+$(document).on('change', 'input[name=memory_type]:checked', function(){
+    // change the global variable to true
+    memoryType = true
+    // verify the form
+    verifyForm();
+});
+
+// set a global variable to track the clicks for storage_type
+var storageType = false;
+// if one of the memory radio buttons change, capture that
+$(document).on('change', 'input[name=storage_type]:checked', function(){
+    // change the global variable to true
+    storageType = true
+    // verify the form
+    verifyForm();
+});
+
 // once the button is ready, lets submit it and process the data
 $(document).on('click', '#verify-btn-continue', function(){
     // disable the button
@@ -177,6 +223,7 @@ $(document).on('click', '#verify-btn-continue', function(){
     // disable all the selects and inputs
     $(".item-required").prop('disabled', true);
     $(".item-optional").prop('disabled', true);
+    $(".btn-check").prop('disabled', true);
     // show loading
     $("#progress").html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Processing...');
     // set up the data object
@@ -196,19 +243,16 @@ $(document).on('click', '#verify-btn-continue', function(){
     });
 
     if(fileInfo.type == 'aws'){ 
-        console.log(data);
         var functionFile = 'functions/aws.php';
     }
 
     if(fileInfo.type == 'gcp'){ 
-        console.log(data);
         var functionFile = 'functions/gcp.php';
     }
 
     if(fileInfo.type == 'custom'){ 
         // add the track clicks to the data object
         data.trackClicks = trackClicks;
-        console.log(data);
         var functionFile = 'functions/custom.php';
     }
 
@@ -219,7 +263,6 @@ $(document).on('click', '#verify-btn-continue', function(){
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(response) {
-            console.log(response);
             // hide the loading
             $("#progress").html('');
             // clear everything and show the download link
@@ -237,10 +280,29 @@ $(document).on('click', '#verify-btn-continue', function(){
                     type: 'POST',
                     data: {filename: response.filename},
                     success: function(response) {
-                        console.log(response);
+                        //console.log(response);
                     }
                 });
             }, 5000);
         }
     });
+});
+
+
+// handle the quick start button clicks for any ID that ends with -qs
+$(document).on('click', '[id$="-qs"]', function(){
+    // get the button ID
+    var btnID = $(this).attr('id');
+
+    // split to the before the last dash
+    var workload = $(this).attr('id').split('-').slice(0, -1).join('-');
+    
+    // remove active from the other buttons
+    $('[id$="-qs"]').removeClass('active');
+
+    // make this button active
+    $('#'+btnID).addClass('active');
+
+    // call the quickstart function
+    quickStart(workload);
 });

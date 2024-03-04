@@ -29,6 +29,13 @@ if($inputData['required']['storage'] == 'storage_column'){
     $storagePerMachineIndex = $inputData['required']['storage'];
 }
 
+// was the OS column selected?
+if($inputData['optional']['os'] != "Select"){
+    $osColumn = "selected";
+}else{
+    $osColumn = "not selected";
+}
+
 // what column is the instane type in?
 $instanceTypeIndex = $inputData['required']['instance_type'];
 
@@ -59,7 +66,6 @@ if ($response) {
     # returned intance types/cpu array
     $output = array();
     foreach($csvData as $row) {
-        
         # set up a variable to add to the object
         $thisRow = array();
         $thisRow["*Server name"]="VM".$i;
@@ -99,6 +105,18 @@ if ($response) {
     
     // write the CSV file and return the CSV file name
     $filename = writeCSV($output);
+
+    // log the activity
+    if($env == 'prod'){
+        $message = "aws file created.";
+        $rows = count($output);
+        if($useStorageColumn){
+            $storage = "CSV column selected";
+        }else{
+            $storage = "entered manually";
+        }
+        logThis("aws",$message,$rows, $storage, $osColumn);
+    }
     
     header("Content-Type: application/json; charset=UTF-8");
     // return the file name

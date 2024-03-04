@@ -23,6 +23,19 @@ include 'functions/header.php';
                         <input type="file" name="fileToUpload" id="fileToUpload" class="form-control-file">
                     </div>
                     <div id="progress" class="main-margin float-none"></div>
+                    <div id="quickstart">
+                        <br /><br />
+                        <div>
+                            <h3>Quick start</h3>
+                            <p>Click one of the buttons below to get started</p>
+                            <button class="btn btn-outline-secondary" id="aws-qs">AWS</button>
+                            <button class="btn btn-outline-secondary" id="gcp-qs">GCP</button>
+                            <button class="btn btn-outline-secondary" id="custom-qs">Custom CSV</button>
+                            <button class="btn btn-outline-secondary" id="rvtools-qs">RVTools</button>
+                        </div>
+                        <div id="quickstart-info"></div>
+                    </div>
+                    
                 </div>
                 <div id="verify-file">
                     <div id="verify-confirm">
@@ -57,7 +70,29 @@ include 'functions/header.php';
             </div>
             <div class="col main-sections">
                 <h3>What is this?</h3>
-                <p>Coming Soon</p>
+                <p>This is a tool that will take AWS, GCP exports, or work with a custom CSV file. After a couple questions, it will output a Azure Migrate Ready CSV that you can upload directly to Azure Migrate to get baseline pricing.</p>
+                <h3>Why do I need it?</h3>
+                <p>This will save you hours of time manipulating spreadsheets or looking up the other clouds VM information. This does it all for you.</p>
+                <h3>How does it work?</h3>
+                <p>With the AWS and GCP files, we've downloaded an export of all available VM's in each platform, when you upload your file, we check the Instance or Machine Types against a database and plug in the proper CPU/Memory specs.</p>
+                <p>With the custom CSV, we ask you to map the columns to the proper Azure Migrate fields and then we output the CSV for you.</p>
+                <h3>Requirements</h3>
+                <p>We only can accept CSV uploads, so if you have an Excel file, please save it as a CSV first.</p>
+                <p>For AWS and GCP, you need to have the proper exports from the cloud providers that include the Instance type or Machine type. For the custom CSV, at a minimum you need to have CPU and Memory in the file.</p>
+                <p>All files can have optional columns, Operating System, Computer Name and Storage.  We let you know which are optional or required after you upload the file.</p>
+                <h3>Assumptions</h3>
+                <p>Because we're looking to get a starting point for a quote, the data is formatted in the following way</p>
+                <ul>
+                    <li>When you list the instance name, this app looks up the CPU and Memory for that machine</li>
+                    <li>Storage entered is divided by the number of machines and rounded up to the next 10's (Ie: 153 is rounded up to 160)</li>
+                    <li>Each machine is given 1 disk with the size of the storage per machine</li>
+                    <li>OS is set to Windows Server 2016 (assuming AHUB) so cost is same with Win/Linux</li>
+                    <li>Machines will be named VM1, VM2, etc. for the input to Azure Migrate (to avoid duplicates)</li>
+                </ul>
+                <h3>Is my data safe?</h3>
+                <p>We log your username when you authenticate to the app and save generic usage data for reporting purposes.</p>
+                <p>This tool processes the data, provides an Azure Ready Migrate file to you, then immediately purges any data we were working with to build the export.</p>
+                
             </div>
         </div>
         

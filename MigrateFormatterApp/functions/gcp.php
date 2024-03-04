@@ -31,6 +31,13 @@ if($inputData['required']['storage'] == 'storage_column'){
     $storagePerMachineIndex = $inputData['required']['storage'];
 }
 
+// was the OS column selected?
+if($inputData['optional']['os'] != "Select"){
+    $osColumn = "selected";
+}else{
+    $osColumn = "not selected";
+}
+
 // what column is the instane type in?
 $instanceTypeIndex = $inputData['required']['machine_type'];
 
@@ -86,7 +93,7 @@ if ($response) {
         }
         $thisRow["Disk 1 size (In GB)"]=$storagePerMachine;
         # copy over the original instance type and any optional columns selected
-        $thisRow["original_instance_type"]=$instanceType;
+        $thisRow["original_machine_type"]=$instanceType;
         
         // check if there are any optional columns we need to add
         if($inputData['optional']){
@@ -103,6 +110,18 @@ if ($response) {
     // write the CSV file and return the CSV file name
     $filename = writeCSV($output);
     
+    // log the activity
+    if($env == 'prod'){
+        $message = "gcp file created.";
+        $rows = count($output);
+        if($useStorageColumn){
+            $storage = "CSV column selected";
+        }else{
+            $storage = "entered manually";
+        }
+        logThis("gcp",$message,$rows,$storage,$osColumn);
+    }
+
     header("Content-Type: application/json; charset=UTF-8");
     // return the file name
     $return = array(

@@ -1,0 +1,33 @@
+Region,Machine type,CPU,Memory,OS
+us-east1-b,n1-standard-2,2,8192,Linux
+australia-southeast2-a,n1-standard-2,2,8192,Linux
+us-central1-a,n1-standard-2,2,8192,Linux
+australia-southeast1-a,n1-standard-2,2,8192,Linux
+us-central1-a,n1-standard-1,1,4096,Linux
+us-east1-b,n1-standard-4,4,16384,Linux
+us-east1-c,n1-standard-4,4,16384,Linux
+us-east1-d,n1-standard-4,4,16384,Linux
+us-central1-a,n1-standard-4,4,16384,Linux
+us-central1-b,n1-standard-4,4,16384,Linux
+us-central1-c,n1-standard-4,4,16384,Linux
+us-east1-d,n1-standard-8,8,30720,Linux
+us-east1-b,n1-standard-8,8,30720,Linux
+australia-southeast2-c,n1-standard-8,8,30720,Linux
+us-east1-c,n1-standard-8,8,30720,Linux
+australia-southeast2-b,n1-standard-8,8,30720,Linux
+australia-southeast2-a,n1-standard-8,8,30720,Linux
+us-central1-a,n1-standard-8,8,30720,Linux
+us-central1-b,n1-standard-8,8,30720,Linux
+australia-southeast1-a,n1-standard-8,8,30720,Linux
+us-central1-f,n1-standard-8,8,30720,Linux
+australia-southeast1-b,n1-standard-8,8,30720,Linux
+us-central1-c,n1-standard-8,8,30720,Linux
+australia-southeast1-c,n1-standard-8,8,30720,Linux
+us-central1-a,e2-standard-8,8,32768,Linux
+us-east1-c,n1-standard-2,2,8192,Linux
+us-east1-d,n1-standard-2,2,8192,Linux
+us-central1-b,n1-standard-2,2,8192,Linux
+us-central1-c,n1-standard-2,2,8192,Linux
+australia-southeast2-a,n1-standard-4,4,16384,Linux
+australia-southeast1-a,n1-standard-4,4,16384,Linux
+us-central1-a,e2-standard-4,4,16384,Microsoft Sever 2016 (64 bit)

@@ -1,0 +1,99 @@
+﻿Business Unit,cpu,memory,storage,name,OS
+NA,4,2048,200,VM10000,Microsoft Windows Server 2016
+NA,4,2048,200,VM10001,Microsoft Windows Server 2016
+NA,4,2048,200,VM10002,Microsoft Windows Server 2016
+NA,4,2048,200,VM10003,Microsoft Windows Server 2016
+NA,4,2048,200,VM10004,Microsoft Windows Server 2016
+NA,4,2048,200,VM10005,Microsoft Windows Server 2016
+NA,4,4096,200,VM10006,Microsoft Windows Server 2016
+NA,4,4096,200,VM10007,Microsoft Windows Server 2016
+NA,4,4096,200,VM10008,Microsoft Windows Server 2016
+NA,4,4096,200,VM10009,Microsoft Windows Server 2016
+NA,4,4096,200,VM10010,Microsoft Windows Server 2016
+NA,8,8192,200,VM10011,Microsoft Windows Server 2016
+NA,8,8192,200,VM10012,Microsoft Windows Server 2016
+NA,8,8192,200,VM10013,Microsoft Windows Server 2016
+NA,8,8192,200,VM10014,Microsoft Windows Server 2016
+NA,8,8192,200,VM10015,Microsoft Windows Server 2016
+NA,8,8192,200,VM10016,Microsoft Windows Server 2016
+NA,8,8192,200,VM10017,Microsoft Windows Server 2016
+EMEA,8,8192,200,VM10018,Microsoft Windows Server 2016
+EMEA,8,8192,200,VM10019,Microsoft Windows Server 2016
+EMEA,8,8192,200,VM10020,Microsoft Windows Server 2016
+EMEA,8,8192,200,VM10021,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10022,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10023,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10024,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10025,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10026,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10027,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10028,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10029,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10030,Microsoft Windows Server 2016
+EMEA,12,8192,200,VM10031,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10032,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10033,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10034,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10035,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10036,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10037,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10038,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10039,Microsoft Windows Server 2016
+EMEA,12,16384,200,VM10040,Microsoft Windows Server 2016
+EMEA,4,16384,200,VM10041,Microsoft Windows Server 2016
+EMEA,4,16384,200,VM10042,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10043,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10044,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10045,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10046,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10047,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10048,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10049,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10050,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10051,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10052,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10053,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10054,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10055,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10056,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10057,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10058,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10059,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10060,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10061,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10062,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10063,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10064,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10065,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10066,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10067,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10068,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10069,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10070,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10071,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10072,Microsoft Windows Server 2016
+AUS,4,16384,200,VM10073,Linux
+AUS,4,16384,200,VM10074,Linux
+AUS,4,16384,200,VM10075,Linux
+AUS,4,16384,200,VM10076,Linux
+AUS,4,16384,200,VM10077,Linux
+AUS,4,16384,200,VM10078,Linux
+AUS,4,16384,200,VM10079,Linux
+AUS,4,16384,200,VM10080,Linux
+AUS,4,16384,200,VM10081,Linux
+AUS,4,16384,200,VM10082,Linux
+AUS,4,16384,200,VM10083,Linux
+AUS,4,16384,200,VM10084,Linux
+AUS,4,16384,200,VM10085,Linux
+AUS,4,16384,200,VM10086,Linux
+AUS,4,16384,200,VM10087,Linux
+AUS,4,16384,200,VM10088,Linux
+AUS,4,16384,200,VM10089,Linux
+AUS,4,16384,200,VM10090,Linux
+AUS,4,16384,200,VM10091,Linux
+AUS,4,16384,200,VM10092,Linux
+AUS,4,16384,200,VM10093,Linux
+AUS,4,16384,200,VM10094,Linux
+AUS,4,16384,200,VM10095,Linux
+AUS,4,16384,200,VM10096,Linux
+AUS,4,16384,200,VM10097,Linux

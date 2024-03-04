@@ -1,4 +1,15 @@
 <?php
+function logThis($type,$message,$rows=null, $storage = null, $os = null, $multi = null, $groups = null){
+    #use CURL to make the function call
+    $url = getEnv('functionUrlGeneral')."log?code=".getEnv('functionKey')."&email=".$_SERVER['HTTP_X_MS_CLIENT_PRINCIPAL_NAME']."&info=".urlencode($message)."&type=".$type."&storage=".urlencode($storage)."&multi=".$multi."&groups=".urlencode($groups)."&os=".urlencode($os)."&rows=".$rows;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    # get
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_exec($ch);
+    curl_close($ch);
+}
 
 function sendRequest($url, $request = "GET"){
     #use CURL to make the function call

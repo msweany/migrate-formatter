@@ -1,13 +1,12 @@
 var customfileInfo;
 function formatCustom(fileInfo){
-    console.log("custom.js accessed");
     // set the fileInfo to the global variable
     customfileInfo = fileInfo;
     // hide the buttons
     $("#verify-confirm").html('<h3>Processing as a custom file.</h3>');
     $("#verify-explain").show();
     $("#verify-explain").html(`
-        Does each line represent a computer? <br>
+        Is there only one computer in each row? <br>
         <button id="verify-single-line-yes" class="btn btn-outline-primary">Yes</button>
         <button id="verify-single-line-no" class="btn btn-outline-primary">No</button>
         <br /><br />
@@ -26,9 +25,7 @@ var trackClicks = {
     singleLine: false,
     singleLineClicked: false,
     group: false,
-    groupClicked: false,
-    memory: false,
-    memoryClicked: false
+    groupClicked: false
 };
 
 // make sure all buttons have been clicked and highlight the active one
@@ -49,7 +46,6 @@ function verifyClicks(btn){
 
     // #### now check if both have been clicked
     if(trackClicks.singleLineClicked && trackClicks.groupClicked){
-        console.log(trackClicks);
         // change the class of the active button to btn-primary (so we can see what was selected)
         $('.active').removeClass('btn-outline-primary').addClass('btn-primary');
         // disable all the buttons that start with verify, keep active highlighted
@@ -72,9 +68,9 @@ function verifyClicks(btn){
         // set up the required table info
         requiredHtml += columnMatch(true, 'CPU', 'The column with the CPU count', customfileInfo);
         requiredHtml += columnMatch(true, 'Memory', 'The column with memory', customfileInfo);
-        requiredHtml += confirmOptions(true, 'Memory Type', 'Is the memory in GB or MB?', ['GB', 'MB'], 'MB');
+        requiredHtml += confirmOptions(true, 'Memory Type', 'Is the memory in the column GB or MB?', ['GB', 'MB']);
         requiredHtml += columnMatch(true, 'Storage', 'The column with individual machine storage listed', customfileInfo, true);
-        requiredHtml += confirmOptions(true, 'Storage Type', 'Is the storage in GB or MB?', ['GB', 'MB'], 'GB');
+        requiredHtml += confirmOptions(true, 'Storage Type', 'Is the storage in the column GB or MB?', ['GB', 'MB']);
         
         // set up the optional table info
         optionalHtml += columnMatch(false, 'OS', 'Add this so we can match up if it\'s Windows or Linux. We\'ll assume Windows if this is not set.', customfileInfo);
