@@ -91,7 +91,8 @@ aws ec2 describe-instances \\
         html += `<h3>Resources</h3>
             <p>You can use this download to test the AWS conversion functionality.</p>
             <p><a href="/files/aws-migrate-formatter-example.csv">AWS Example</a></p>`; 
-        
+            html += `<h3>Sources</h3>
+            <p>All AWS instance types are collected from the AWS CLI using the <pre>aws ec2 describe-instance-types</pre> command and are then saved in a CosmosDB for this app.</p>`
     }else if(selected == 'gcp'){
         html = '<h3>GCP File</h3>';
         html += '<p>You can get the appropriate file by accessing the Google Cloud Shell in a GCP project that has VM\'s and running the following command:</p>';
@@ -100,11 +101,14 @@ aws ec2 describe-instances \\
         html += `<h3>Resources</h3>
             <p>You can use this download to test the GCP conversion functionality.</p>
             <p><a href="/files/gcp-migrate-formatter-example.csv">GCP Example</a></p>`;
+        html += `<h3>Sources</h3>
+            <p>All GCP machine types are collected from the GCP cloud shell using the <pre>gcloud compute machine-types list</pre> command and are then saved in a CosmosDB for this app.</p>`
     }else if(selected == 'rvtools'){
         html = '<h3>RVTools</h3>';
         html += '<p>We have a private preview that allows you to upload the RVTools Export right into Azure Migrate now.</p>';
-        html += 'Access the preview here <a href="https://aka.ms/migrate/rvtools" target="_blank">https://aka.ms/migrate/rvtools</a><br />';
-        html += '<a href="https://microsoftapc.sharepoint.com/teams/AzureCoreIDC/_layouts/15/stream.aspx?id=%2Fteams%2FAzureCoreIDC%2FShared%20Documents%2FGeneral%2FExecution%2FDocumentation%2FAzure%20migrate%2FRVTools%20XLSX%20import%2FRVTools%20XLSX%20import%20private%20preview%20demo%2Emp4&nav=eyJwbGF5YmFja09wdGlvbnMiOnsic3RhcnRUaW1lSW5TZWNvbmRzIjoxOC4wOTQ4MTd9fQ%3D%3D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview" target="_blank">See the demo video here.</a><br /><br />';
+        html += `<h3>Resources</h3>
+                Access the preview <a href="https://aka.ms/migrate/rvtools" target="_blank">https://aka.ms/migrate/rvtools</a><br />
+                <a href="https://microsoftapc.sharepoint.com/teams/AzureCoreIDC/_layouts/15/stream.aspx?id=%2Fteams%2FAzureCoreIDC%2FShared%20Documents%2FGeneral%2FExecution%2FDocumentation%2FAzure%20migrate%2FRVTools%20XLSX%20import%2FRVTools%20XLSX%20import%20private%20preview%20demo%2Emp4&nav=eyJwbGF5YmFja09wdGlvbnMiOnsic3RhcnRUaW1lSW5TZWNvbmRzIjoxOC4wOTQ4MTd9fQ%3D%3D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview" target="_blank">See the demo video here.</a>`;
     }else{
         html = '<h3>Custom CSV</h3>';
         html += '<p>For custom files, we can handle the following.</p>';

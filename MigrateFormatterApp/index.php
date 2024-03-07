@@ -76,6 +76,9 @@ include 'functions/header.php';
                 <h3>How does it work?</h3>
                 <p>With the AWS and GCP files, we've downloaded an export of all available VM's in each platform, when you upload your file, we check the Instance or Machine Types against a database and plug in the proper CPU/Memory specs.</p>
                 <p>With the custom CSV, we ask you to map the columns to the proper Azure Migrate fields and then we output the CSV for you.</p>
+                <h3>I've got this AzureMigrateReady CSV file, now what?</h3>
+                <p>Great! Now you can go to Azure Migrate, create a new project, and upload the file.  It will give you a baseline cost for running those machines in Azure.</p>
+                <p>Here's a link that shows how to upload a CSV to Azure Migrate (skip to 12 minutes to get right to the upload portion) <a href="https://microsoft.sharepoint.com/teams/AzureCoreSTU2/_layouts/15/stream.aspx?id=%2Fteams%2FAzureCoreSTU2%2FShared%20Documents%2FMigration%20Flight%20School%2FAWS%20Formatter%2Emp4&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview" target="_blank">Azure Migrate CSV Upload</a></p>
                 <h3>Requirements</h3>
                 <p>We only can accept CSV uploads, so if you have an Excel file, please save it as a CSV first.</p>
                 <p>For AWS and GCP, you need to have the proper exports from the cloud providers that include the Instance type or Machine type. For the custom CSV, at a minimum you need to have CPU and Memory in the file.</p>
@@ -92,21 +95,21 @@ include 'functions/header.php';
                 <h3>Is my data safe?</h3>
                 <p>We log your username when you authenticate to the app and save generic usage data for reporting purposes.</p>
                 <p>This tool processes the data, provides an Azure Ready Migrate file to you, then immediately purges any data we were working with to build the export.</p>
-                
             </div>
         </div>
         
     </div>
     <div class="text-center">
-        Written and supported by: <a href="mailto:misweany@microsoft.com">Mike Sweany</a>, Sr Technical Specialist, SDP
+        Written and supported by: <a href="mailto:misweany@microsoft.com">Mike Sweany</a>, Sr Technical Specialist, SDP<br />
+        <?php echo 'version: <a href="changelog.php" target="_blank">'.$version.'</a>'; ?>
     </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js" integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="js/main.js"></script>
-        <script src="js/functions.js"></script>
-        <script src="js/custom.js"></script>
+        <script src="js/main.js?v=<?php echo $jsVer?>"></script>
+        <script src="js/functions.js?v=<?php echo $jsVer?>"></script>
+        <script src="js/custom.js?v=<?php echo $jsVer?>"></script>
         <script>
 
             $("#resetForm").hide();

@@ -109,6 +109,7 @@ $(document).on('click', '#verify-btn-yes', function(){
         
         // set up the optional table info
         optionalHtml += columnMatch(false, 'OS', 'Add this so we can match up if it\'s Windows or Linux. We\'ll assume Windows with AHUB if this is not set.', fileInfo);
+        optionalHtml += columnMatch(false, 'Multiple Workloads', 'If you have multiple workloads in this file with a column for that workload or business unit, select that column so we can create it as a grouping for naming the VM\'s.', fileInfo);
         optionalHtml += columnMatch(false, 'VM Name', 'The original VM name column. Add this if you want to see it matched up on the output file.', fileInfo);
     }
 
@@ -124,6 +125,7 @@ $(document).on('click', '#verify-btn-yes', function(){
         
         // set up the optional table info
         optionalHtml += columnMatch(false, 'OS', 'Add this so we can match up if it\'s Windows or Linux. We\'ll assume Windows with AHUB if this is not set.', fileInfo);
+        optionalHtml += columnMatch(false, 'Multiple Projects', 'If you have multiple GCP projects in this file with a column with the project name, select that column so we can create it as a grouping for naming the VM\'s.', fileInfo);
         optionalHtml += columnMatch(false, 'VM Name', 'The original VM name column. Add this if you want to see it matched up on the output file.', fileInfo);
     }
 

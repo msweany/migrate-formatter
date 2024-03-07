@@ -68,7 +68,19 @@ if ($response) {
     foreach($csvData as $row) {
         # set up a variable to add to the object
         $thisRow = array();
-        $thisRow["*Server name"]="VM".$i;
+        # was the mulltiple_workloads column selected?
+        if($inputData['optional']['multiple_workloads'] != "Select"){
+            # remove any spaces from the project
+            $group = str_replace(' ', '_', $row[$inputData['optional']['multiple_workloads']]);
+        }else{
+            $group = 'VM';
+        }
+        // if $groupName[$group] is not set, set it to 1
+        if(!isset($groupName[$group])){
+            $groupName[$group] = 1;
+        }
+        $thisRow["*Server name"]=$group."_".$groupName[$group];
+        $groupName[$group]++;
 
         # get the csvData instance_type so we we look it up agains the json data for cpu and memory
         $instanceType = trim($row[$instanceTypeIndex]);

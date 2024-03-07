@@ -59,6 +59,12 @@ function matchOS($OS){
         return "Linux";
     }elseif(strpos($OS, "suse") !== false){
         return "Linux";
+    }elseif(strpos($OS, "google") !== false){
+        return "Linux";
+    }elseif(strpos($OS, "amazon") !== false){
+        return "Linux";
+    }elseif(strpos($OS, "container") !== false){
+        return "Linux";
     }else{
         return "Microsoft Windows Server 2022 (64-bit)";
     }

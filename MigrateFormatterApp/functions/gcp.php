@@ -72,16 +72,54 @@ if ($response) {
         
         # set up a variable to add to the object
         $thisRow = array();
-        $thisRow["*Server name"]="VM".$i;
+        # was the mulltiple_projects column selected?
+        if($inputData['optional']['multiple_projects'] != "Select"){
+            # remove any spaces from the project
+            $group = str_replace(' ', '_', $row[$inputData['optional']['multiple_projects']]);
+        }else{
+            $group = 'VM';
+        }
+        // if $groupName[$group] is not set, set it to 1
+        if(!isset($groupName[$group])){
+            $groupName[$group] = 1;
+        }
+        $thisRow["*Server name"]=$group."_".$groupName[$group];
+        $groupName[$group]++;
 
         # get the csvData instance_type so we we look it up agains the json data for cpu and memory
         $instanceType = trim($row[$instanceTypeIndex]);
         
         # search $json for id = $instanceType
         $index = array_search($instanceType, array_column($json, 'id'));
+
         # get the cpu and memory values
         $cpu = $json[$index]->cpu;
         $memory = $json[$index]->memory;
+
+        # check if the instance type has custom in the name, if it does, we need to handle the cpu and memory differently
+        if(strpos($instanceType, 'custom') !== false){
+            # break up the custom instance name by -
+            $custom = explode("-", $instanceType);
+            # get the last value in the array, this is the memory value
+            $memory = end($custom);
+            # remove the last value from the array
+            array_pop($custom);
+            # get the cpu value
+            $cpu = end($custom);
+            # if the cpu value is a number, use that, if its small, medium or large, we can assign numbers to those
+            if(is_numeric($cpu)){
+                $cpu = $cpu;
+            }else{
+                if($cpu == "small"){
+                    $cpu = 2;
+                }elseif($cpu == "medium"){
+                    $cpu = 4;
+                }elseif($cpu == "large"){
+                    $cpu = 8;
+                }
+            }
+        }
+        
         
         $thisRow["*Cores"]=$cpu;
         $thisRow["*Memory (In MB)"]=$memory;
